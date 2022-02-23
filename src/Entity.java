@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.Random;
 
 
-abstract public class Entity {
+abstract public class Entity extends JPanel {
     private Vector position;
     private Vector deplacement;
     private Color color;
@@ -12,10 +12,22 @@ abstract public class Entity {
     private Frame f;
 
     public Entity(){
+        color = Color.BLACK;
+        taille = 140;
+        position = new Vector(200,200);
+        deplacement = new Vector(10,10);
+        /*
+        rand = new Random();
         color = new Color(rand.nextInt());
         taille = rand.nextInt();
         position = new Vector(rand.nextInt(), rand.nextInt());
         deplacement = new Vector(rand.nextInt(), rand.nextInt());
+
+         */
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     Vector getPosition() {
@@ -30,6 +42,9 @@ abstract public class Entity {
         return taille;
     }
 
-    abstract public void draw(Graphics graphics);
+    public void paintComponent(Graphics graphics){
+        super.paintComponent(graphics);
+    }
+    abstract public void drawing();
 
 }
