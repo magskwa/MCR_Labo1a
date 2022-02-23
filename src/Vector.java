@@ -7,8 +7,9 @@ public class Vector {
         this.y = y;
     }
 
-    public void refresh(){
-
+    public void refresh(Vector v){
+        this.x += v.x;
+        this.y += v.y;
     }
 
 }
