@@ -1,9 +1,16 @@
 import java.awt.*;
 
 public class Square extends Entity{
-    @Override
-    public void draw(Graphics graphics) {
-        graphics.drawRect(getPosition().x, getPosition().y, getTaille(), getTaille());
-        getPosition().refresh(getDeplacement());
+    int height;
+    int width;
+
+    Square(Vector position, Vector deplacement, Color c, int height, int width) {
+        super(position, deplacement, c);
+        this.height = height;
+        this.width = width;
+    }
+
+    public void drawShape(Graphics g) {
+        g.fillRect(getPosition().getX(), getPosition().getY(), width, height);
     }
 }
