@@ -10,7 +10,15 @@ abstract public class Entity extends JPanel implements ActionListener {
     private Vector position;
     private Vector deplacement;
     private Color c;
+    private static int xLim = 0;
+    private static int yLim = 0;
+
     Timer timer = new Timer(200, this);
+
+    public static void setFrameDimensions(int x, int y) {
+        xLim = x;
+        yLim = y;
+    }
 
     public Color getColor() { return c; }
 
@@ -41,8 +49,12 @@ abstract public class Entity extends JPanel implements ActionListener {
     }
 
     public void refresh() {
+
         position = position.add(deplacement);
+
     }
+
+    public abstract void checkCollision();
 
     public void updateDirection(Vector direction) {
         this.deplacement = direction;

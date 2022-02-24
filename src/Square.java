@@ -13,4 +13,7 @@ public class Square extends Entity{
     public void drawShape(Graphics g) {
         g.fillRect(getPosition().getX(), getPosition().getY(), width, height);
     }
+
+    public void checkCollision() {
+    }
 }

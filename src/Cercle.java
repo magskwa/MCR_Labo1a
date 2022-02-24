@@ -12,4 +12,7 @@ public class Cercle extends Entity {
     public void drawShape(Graphics g) {
         g.fillOval(getPosition().getX(), getPosition().getY(), rayon, rayon);
     }
+
+    public void checkCollision() {
+    }
 }
