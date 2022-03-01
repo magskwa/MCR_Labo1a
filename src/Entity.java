@@ -56,32 +56,7 @@ abstract public class Entity {
 
         int x = position.getX();
         int y = position.getY();
-        int deplaX = deplacement.getX();
-        int deplaY = deplacement.getY();
-        position.setX(position.getX() + deplacement.getX());
-        position.setY(position.getY() + deplacement.getY());
-
-
-        if(collision == 0) {
-            if (x - getWidth() <= 0 || x + getWidth() >= xLim) {
-                deplacement.setX(-1 * deplaY);
-                deplacement.setY(deplaX);
-                position.setX(position.getX() + deplacement.getX());
-                position.setY(position.getY() + deplacement.getY());
-                collision++;
-            }
-
-            if (y - getHeight() <= 0 || y + getHeight() >= yLim) {
-                deplacement.setX(-1 * deplacement.getY());
-                deplacement.setY(deplaX);
-                position.setX(position.getX() + deplacement.getX());
-                position.setY(position.getY() + deplacement.getY());
-                collision++;
-            }
-        } else {
-            collision ++;
-            collision = collision% 4;
-        }
+        position = position.add(deplacement);
     }
 
     public void updateDirection(Vector direction) {

@@ -25,6 +25,8 @@ public class Frame extends JFrame {
         setVisible(true);
         board = new MyPanel(xDim, yDim);
         this.add(board);
+        this.pack();
+        board.repaint();
         Entity.setFrameDimensions(xDim, yDim);
 
         int maxSpeed = 10;
@@ -33,13 +35,12 @@ public class Frame extends JFrame {
         int minSize = 10;
 
         for (int i = 0; i < nCircles; i++) {
-            System.out.println("Cercle " + (i + 1));
 
-            Vector initialPosition = new Vector(new Random().nextInt(xDim), new Random().nextInt(yDim));
-            Vector initialDirection = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
-                    new Random().nextInt(maxSpeed - minSpeed) + minSpeed);
             int rayon = new Random().nextInt(maxSize - minSize) + minSize;
             Color color = new Color(new Random().nextInt());
+            Vector initialPosition = new Vector(new Random().nextInt(xDim - rayon) + rayon, new Random().nextInt(yDim - rayon) + rayon);
+            Vector initialDirection = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
+                    new Random().nextInt(maxSpeed - minSpeed) + minSpeed);
 
             Cercle c = new Cercle(initialPosition, initialDirection, color, rayon);
             board.addEntity(c);
@@ -47,14 +48,14 @@ public class Frame extends JFrame {
         }
 
         for (int i = 0; i < nSquares; i++) {
-            System.out.println("Carre " + (i + 1));
 
-            Vector initialPosition = new Vector(new Random().nextInt(xDim), new Random().nextInt(yDim));
-            Vector initialDirection = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
-                    new Random().nextInt(maxSpeed - minSpeed) + minSpeed);
+
             int width = new Random().nextInt(maxSize - minSize) + minSize;
             int heigth = new Random().nextInt(maxSize - minSize) + minSize;
             Color color = new Color(new Random().nextInt());
+            Vector initialPosition = new Vector(new Random().nextInt(xDim - width) + width, new Random().nextInt(yDim - heigth) + heigth);
+            Vector initialDirection = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
+                    new Random().nextInt(maxSpeed - minSpeed) + minSpeed);
 
             Square s = new Square(initialPosition, initialDirection, color, heigth, width);
             board.addEntity(s);
