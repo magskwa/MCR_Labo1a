@@ -8,6 +8,7 @@ public class Frame extends JFrame {
 
     private int xDim;
     private int yDim;
+    MyPanel board;
 
     Frame(int xDim, int yDim) {
         super();
@@ -16,44 +17,53 @@ public class Frame extends JFrame {
     }
 
     public void run(int nSquares, int nCircles) {
+
         setSize(xDim, yDim);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
-        Entity.setFrameDimensions(xDim, yDim);
+        board = new MyPanel(xDim, yDim);
+        this.add(board);
+        Entity.setFrameDimensions(100, 100);
 
-        LinkedList<Entity> entities = new LinkedList<>();
-        for (int i = 0; i < nSquares; i++) {
-
-            Vector initialPosition = new Vector(new Random().nextInt(), new Random().nextInt());
-            Vector initialDirection = new Vector(new Random().nextInt(), new Random().nextInt());
-            int width = new Random().nextInt();
-            int heigth = new Random().nextInt();
-            Color color = new Color(new Random().nextInt());
-
-            Square s = new Square(initialPosition, initialDirection, color, heigth, width);
-            this.add(s);
-            entities.add(s);
-
-        }
+        int maxSpeed = 10;
+        int minSpeed = 5;
+        int maxSize = 20;
+        int minSize = 10;
 
         for (int i = 0; i < nCircles; i++) {
+            System.out.println("Cercle " + (i + 1));
 
-            Vector initialPosition = new Vector(new Random().nextInt(), new Random().nextInt());
-            Vector initialDirection = new Vector(new Random().nextInt(), new Random().nextInt());
-            int rayon = new Random().nextInt();
+            Vector initialPosition = new Vector(new Random().nextInt(xDim), new Random().nextInt(yDim));
+            Vector initialDirection = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
+                    new Random().nextInt(maxSpeed - minSpeed) + minSpeed);
+            int rayon = new Random().nextInt(maxSize - minSize) + minSize;
             Color color = new Color(new Random().nextInt());
 
             Cercle c = new Cercle(initialPosition, initialDirection, color, rayon);
-            this.add(c);
-            entities.add(c);
+            board.addEntity(c);
+
+        }
+
+        for (int i = 0; i < nSquares; i++) {
+            System.out.println("Carre " + (i + 1));
+
+            Vector initialPosition = new Vector(new Random().nextInt(xDim), new Random().nextInt(yDim));
+            Vector initialDirection = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
+                    new Random().nextInt(maxSpeed - minSpeed) + minSpeed);
+            int width = new Random().nextInt(maxSize - minSize) + minSize;
+            int heigth = new Random().nextInt(maxSize - minSize) + minSize;
+            Color color = new Color(new Random().nextInt());
+
+            Square s = new Square(initialPosition, initialDirection, color, heigth, width);
+            board.addEntity(s);
 
         }
     }
 
     public static void main(String[] args){
-        Frame f = new Frame(600, 600);
-        f.run(0, 0);
+        Frame f = new Frame(500, 500);
+        f.run(3,4);
     }
 }
 

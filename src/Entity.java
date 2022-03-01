@@ -5,15 +5,23 @@ import java.awt.event.ActionListener;
 import java.util.EventListener;
 import java.util.Random;
 
+enum collisionType {NO_COLLISION, VERTICAL_BORDER, HORIZONTAL_BORDER, EDGE};
 
-abstract public class Entity extends JPanel implements ActionListener {
+
+abstract public class Entity {
     private Vector position;
     private Vector deplacement;
     private Color c;
     private static int xLim = 0;
     private static int yLim = 0;
 
-    Timer timer = new Timer(200, this);
+    public static int getxLim() {
+        return xLim;
+    }
+
+    public static int getyLim() {
+        return yLim;
+    }
 
     public static void setFrameDimensions(int x, int y) {
         xLim = x;
@@ -22,18 +30,16 @@ abstract public class Entity extends JPanel implements ActionListener {
 
     public Color getColor() { return c; }
 
+    public abstract int getWidth();
+
+    public abstract int getHeight();
+
     public Entity(Vector position, Vector deplacement, Color c) {
         this.position = position;
         this.deplacement = deplacement;
         this.c = c;
-        timer.setRepeats(true);
-        timer.start();
     }
 
-    public void actionPerformed(ActionEvent e) {
-        refresh();
-        repaint();
-    }
 
     Vector getPosition() {
         return position;
@@ -44,17 +50,18 @@ abstract public class Entity extends JPanel implements ActionListener {
     }
 
 
-    public void draw() {
-        repaint();
-    }
 
     public void refresh() {
 
+        int x = position.getX();
+        int y = position.getY();
+        if (x - getWidth() <= 0 || x + getWidth() >= xLim)
+            deplacement.setX(-1 * deplacement.getX());
+        if (y - getHeight() <= 0 || y + getHeight() >= yLim)
+            deplacement.setY(-1 * deplacement.getY());
         position = position.add(deplacement);
 
     }
-
-    public abstract void checkCollision();
 
     public void updateDirection(Vector direction) {
         this.deplacement = direction;
@@ -63,7 +70,6 @@ abstract public class Entity extends JPanel implements ActionListener {
     public abstract void drawShape(Graphics g);
 
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
         g.setColor(getColor());
         drawShape(g);
     }

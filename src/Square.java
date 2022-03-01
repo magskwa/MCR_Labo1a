@@ -14,6 +14,8 @@ public class Square extends Entity{
         g.fillRect(getPosition().getX(), getPosition().getY(), width, height);
     }
 
-    public void checkCollision() {
-    }
+    public int getWidth() { return width; }
+
+    public int getHeight() { return height; }
+
 }

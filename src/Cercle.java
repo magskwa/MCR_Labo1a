@@ -9,10 +9,13 @@ public class Cercle extends Entity {
         this.rayon = rayon;
     }
 
+    public int getWidth() { return rayon; }
+
+    public int getHeight() { return rayon; }
+
     public void drawShape(Graphics g) {
         g.fillOval(getPosition().getX(), getPosition().getY(), rayon, rayon);
     }
 
-    public void checkCollision() {
-    }
+
 }
