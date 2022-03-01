@@ -12,6 +12,7 @@ public class Frame extends JFrame {
 
     Frame(int xDim, int yDim) {
         super();
+        board = new MyPanel(xDim, yDim);
         this.xDim = xDim;
         this.yDim = yDim;
     }
@@ -24,7 +25,7 @@ public class Frame extends JFrame {
         setVisible(true);
         board = new MyPanel(xDim, yDim);
         this.add(board);
-        Entity.setFrameDimensions(100, 100);
+        Entity.setFrameDimensions(xDim, yDim);
 
         int maxSpeed = 10;
         int minSpeed = 5;
