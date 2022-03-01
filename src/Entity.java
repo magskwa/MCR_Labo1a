@@ -14,6 +14,7 @@ abstract public class Entity {
     private Color c;
     private static int xLim = 0;
     private static int yLim = 0;
+    private int collision = 0;
 
     public static int getxLim() {
         return xLim;
@@ -60,22 +61,26 @@ abstract public class Entity {
         position.setX(position.getX() + deplacement.getX());
         position.setY(position.getY() + deplacement.getY());
 
-        System.out.println(xLim);
-        System.out.println("Position x:" + x);
-        System.out.println("Position y :" +y);
 
-        if (x - getWidth() <= 0 || x + getWidth() >= xLim) {
-            deplacement.setX(-1 * deplaY);
-            deplacement.setY(deplaX);
-            position.setX(position.getX() + 3*deplacement.getX());
-            position.setY(position.getY() + 3*deplacement.getY());
-        }
+        if(collision == 0) {
+            if (x - getWidth() <= 0 || x + getWidth() >= xLim) {
+                deplacement.setX(-1 * deplaY);
+                deplacement.setY(deplaX);
+                position.setX(position.getX() + deplacement.getX());
+                position.setY(position.getY() + deplacement.getY());
+                collision++;
+            }
 
-        if (y - getHeight() <= 0 || y + getHeight() >= yLim) {
-            deplacement.setX(-1 * deplacement.getY());
-            deplacement.setY(deplaX);
-            position.setX(position.getX() + 3*deplacement.getX());
-            position.setY(position.getY() + 3*deplacement.getY());
+            if (y - getHeight() <= 0 || y + getHeight() >= yLim) {
+                deplacement.setX(-1 * deplacement.getY());
+                deplacement.setY(deplaX);
+                position.setX(position.getX() + deplacement.getX());
+                position.setY(position.getY() + deplacement.getY());
+                collision++;
+            }
+        } else {
+            collision ++;
+            collision = collision% 4;
         }
     }
 
