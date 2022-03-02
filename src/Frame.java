@@ -4,8 +4,9 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class Frame extends JFrame, implements Displayer {
+public class Frame extends JFrame implements Displayer {
 
+    private static Frame frame;
     private int xDim;
     private int yDim;
     MyPanel board;
@@ -64,10 +65,8 @@ public class Frame extends JFrame, implements Displayer {
     }
 
 
-    int getWidth(){}
-    int getHeight(){}
-    Graphics2D getGraphics(){}
-    void repaint(){}
-    void setTitle(String title){}
+    public Graphics2D getGraphics(){
+        return (Graphics2D) super.getGraphics();
+    }
 }
 
