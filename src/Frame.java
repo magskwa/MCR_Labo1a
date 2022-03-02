@@ -7,17 +7,35 @@ import java.util.Random;
 public class Frame extends JFrame implements Displayer {
 
     private static Frame frame;
-    private int xDim;
-    private int yDim;
+    private int xDim = 400;
+    private int yDim = 400;
     MyPanel board;
 
-    Frame(int xDim, int yDim) {
+    private Frame() {
         super();
         board = new MyPanel(xDim, yDim);
+    }
+
+    public void setData(int xDim, int yDim){
         this.xDim = xDim;
         this.yDim = yDim;
     }
 
+    public int getDataX(){
+        return xDim;
+    }
+
+    public int getDataY(){
+        return yDim;
+    }
+
+
+    public static Frame getInstance(){
+        if(frame == null){
+            frame = new Frame();
+        }
+        return frame;
+    }
 
     public void run(int nSquares, int nCircles) {
 
