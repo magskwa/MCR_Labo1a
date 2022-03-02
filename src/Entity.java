@@ -38,9 +38,6 @@ abstract public class Entity {
 
 
     public void refresh() {
-
-        int x = position.getX();
-        int y = position.getY();
         position = position.add(deplacement);
     }
 
