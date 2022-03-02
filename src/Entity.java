@@ -12,22 +12,7 @@ abstract public class Entity {
     private Vector position;
     private Vector deplacement;
     private Color c;
-    private static int xLim = 0;
-    private static int yLim = 0;
-    private int collision = 0;
 
-    public static int getxLim() {
-        return xLim;
-    }
-
-    public static int getyLim() {
-        return yLim;
-    }
-
-    public static void setFrameDimensions(int x, int y) {
-        xLim = x;
-        yLim = y;
-    }
 
     public Color getColor() { return c; }
 

@@ -28,7 +28,6 @@ public class Frame extends JFrame {
         this.add(board);
         this.pack();
         board.repaint();
-        Entity.setFrameDimensions(xDim, yDim);
 
         int maxSpeed = 10;
         int minSpeed = 5;
