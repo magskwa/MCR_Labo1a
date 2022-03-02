@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class Frame extends JFrame implements Displayer {
 
-    private static Frame frame;
-    private int xDim = 400;
-    private int yDim = 400;
+    private static Frame singletonFrame;
+    private int xDim = 500;
+    private int yDim = 500;
     MyPanel board;
 
     private Frame() {
@@ -21,20 +21,18 @@ public class Frame extends JFrame implements Displayer {
         this.yDim = yDim;
     }
 
+    public static Frame getInstance() {
+        if (singletonFrame == null)
+            singletonFrame = new Frame();
+        return singletonFrame;
+    }
+
     public int getDataX(){
         return xDim;
     }
 
     public int getDataY(){
         return yDim;
-    }
-
-
-    public static Frame getInstance(){
-        if(frame == null){
-            frame = new Frame();
-        }
-        return frame;
     }
 
     public void run(int nSquares, int nCircles) {
