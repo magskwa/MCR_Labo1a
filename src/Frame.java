@@ -17,6 +17,7 @@ public class Frame extends JFrame {
         this.yDim = yDim;
     }
 
+
     public void run(int nSquares, int nCircles) {
 
         setSize(xDim, yDim);
@@ -65,7 +66,7 @@ public class Frame extends JFrame {
 
     public static void main(String[] args){
         Frame f = new Frame(500, 500);
-        f.run(3,4);
+        f.run(20,20);
     }
 }
 

@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.LinkedList;
 
 public class MyPanel extends JPanel implements ActionListener {
@@ -20,6 +22,29 @@ public class MyPanel extends JPanel implements ActionListener {
         HEIGHT = height;
         timer.setRepeats(true);
         timer.start();
+
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
+                for (Entity en : entities) {
+                    Vector position = en.getPosition();
+                    int x = position.getX();
+                    int y = position.getY();
+                    int width = en.getWidth();
+                    int height = en.getHeight();
+
+                    if (x - width / 2 <= 0)
+                        position.setX(width / 2);
+                    if (x + width / 2 >= getWidth())
+                        position.setX(getWidth() - width / 2);
+                    if (y - height / 2 <= 0)
+                        position.setY(height / 2);
+                    if (y + height / 2 >= getHeight())
+                        position.setY(HEIGHT - height / 2);
+                }
+            }
+        });
     }
 
     public void addEntity(Entity e) {
@@ -48,9 +73,9 @@ public class MyPanel extends JPanel implements ActionListener {
         int height = e.getHeight();
         Vector deplacement = e.getDeplacement();
 
-        if (x - width / 2 <= 0 || x + width / 2 >= WIDTH)
+        if (x - width / 2 <= 0 || x + width / 2 >= getWidth())
             deplacement.setX(-deplacement.getX());
-        if (y - height / 2 <= 0 || y + height / 2 >= HEIGHT)
+        if (y - height / 2 <= 0 || y + height / 2 >= getHeight())
             deplacement.setY(-deplacement.getY());
     }
 }
