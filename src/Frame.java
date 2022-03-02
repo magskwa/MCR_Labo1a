@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class Frame extends JFrame {
+public class Frame extends JFrame, implements Displayer {
 
     private int xDim;
     private int yDim;
@@ -63,9 +63,11 @@ public class Frame extends JFrame {
         }
     }
 
-    public static void main(String[] args){
-        Frame f = new Frame(500, 500);
-        f.run(20,20);
-    }
+
+    int getWidth(){}
+    int getHeight(){}
+    Graphics2D getGraphics(){}
+    void repaint(){}
+    void setTitle(String title){}
 }
 
