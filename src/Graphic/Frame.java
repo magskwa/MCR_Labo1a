@@ -8,6 +8,61 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
+public class Frame implements Displayer{
+
+    private JFrame jframe;
+    public JPanel jpanel;
+    private int xDim = 500;
+    private int yDim = 500;
+
+
+    public Frame(){
+        jframe = new JFrame();
+        jpanel = new JPanel();
+
+        jframe.setSize(xDim, yDim);
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jframe.setLocationRelativeTo(null);
+        jframe.setVisible(true);
+
+        jpanel.setBackground(Color.WHITE);
+        jpanel.setPreferredSize(new Dimension(jpanel.getWidth(), jpanel.getHeight()));
+        jpanel.setVisible(true);
+    }
+
+    public JPanel getJpanel() {
+        return jpanel;
+    }
+
+    @Override
+    public int getWidth() {
+        return jpanel.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return jpanel.getHeight();
+    }
+
+    @Override
+    public Graphics2D getGraphics() {
+        return (Graphics2D) jpanel.createImage(getWidth(), getHeight()).getGraphics();
+    }
+
+    @Override
+    public void repaint() {
+        //jpanel.getGraphics().drawImage()
+
+    }
+
+    @Override
+    public void setTitle(String title) {
+        jframe.setTitle(title);
+    }
+}
+
+
+/*
 public class Frame extends JFrame implements Displayer {
 
     private static Frame singletonFrame;
@@ -89,4 +144,6 @@ public class Frame extends JFrame implements Displayer {
         return (Graphics2D) super.getGraphics();
     }
 }
+
+ */
 

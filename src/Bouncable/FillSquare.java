@@ -1,9 +1,7 @@
 package Bouncable;
 
-import Bouncable.Entity;
-import Util.Vector;
+import Renderer.*;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class FillSquare extends Entity {
@@ -13,10 +11,10 @@ public class FillSquare extends Entity {
     public Color getColor() { return color; }
 
     public Renderer getRenderer(){
-
+        return new FillRenderer();
     }
 
     public Shape getShape(){
-
+        return new Rectangle(position.getX(), position.getY(), size, size);
     }
 }

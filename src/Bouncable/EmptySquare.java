@@ -1,11 +1,10 @@
 package Bouncable;
 
-import Util.Vector;
+import Renderer.*;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class EmptySquare extends Entity{
+public class EmptySquare extends Entity {
     private Color color = Color.red;
 
     public Color getColor() { return color; }
@@ -15,6 +14,6 @@ public class EmptySquare extends Entity{
     }
 
     public Shape getShape(){
-
+        return new Rectangle(position.getX(), position.getY(), size, size);
     }
 }

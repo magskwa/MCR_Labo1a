@@ -1,8 +1,10 @@
+package Renderer;
+
 import Bouncable.Bouncable;
 
 import java.awt.*;
 
-public class EmptyRenderer implements Renderer{
+public class EmptyRenderer implements Renderer {
 
 
     @Override

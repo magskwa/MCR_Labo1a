@@ -11,7 +11,8 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.LinkedList;
 
-public class MyPanel extends JPanel implements ActionListener {
+public class MyPanel {
+    /*
     Timer timer;
     LinkedList<Entity> entities;
     int WIDTH;
@@ -22,6 +23,7 @@ public class MyPanel extends JPanel implements ActionListener {
         this.setPreferredSize(new Dimension(width, height));
         this.setVisible(true);
         entities = new LinkedList<>();
+
         timer = new Timer(40, this);
         WIDTH = width;
         HEIGHT = height;
@@ -83,4 +85,6 @@ public class MyPanel extends JPanel implements ActionListener {
         if (y - height / 2 <= 0 || y + height / 2 >= getHeight())
             deplacement.setY(-deplacement.getY());
     }
+
+     */
 }

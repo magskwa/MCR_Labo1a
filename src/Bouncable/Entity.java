@@ -3,12 +3,13 @@ package Bouncable;
 import java.awt.*;
 import java.util.Random;
 
+import Renderer.*;
 import Util.Vector;
 
 abstract public class Entity implements Bouncable {
-    private Vector position;
-    private Vector deplacement;
-    private int size;
+    protected Vector position;
+    protected Vector deplacement;
+    protected int size;
 
     int maxSpeed = 10;
     int minSpeed = 5;
