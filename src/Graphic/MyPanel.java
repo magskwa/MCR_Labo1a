@@ -1,3 +1,8 @@
+package Graphic;
+
+import Bouncable.Entity;
+import Util.Vector;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

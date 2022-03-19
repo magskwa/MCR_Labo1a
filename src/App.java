@@ -1,3 +1,5 @@
+import Graphic.Frame;
+
 public class App {
 
     public static void main(String[] args){
@@ -7,3 +9,19 @@ public class App {
 
     }
 }
+
+/*
+public class Bouncers {
+ private LinkedList<Bouncable.Bouncable> bouncers;
+
+public Bouncers() {
+
+}
+    public void run() {
+
+    }
+    public static void main(String ... args) {
+        new Bouncers().run();
+    }
+}
+ */

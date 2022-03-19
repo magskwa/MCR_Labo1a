@@ -1,7 +1,11 @@
+package Graphic;
+
+import Bouncable.FillCercle;
+import Bouncable.FillSquare;
+import Util.Vector;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
 import java.util.Random;
 
 public class Frame extends JFrame implements Displayer {
@@ -27,11 +31,11 @@ public class Frame extends JFrame implements Displayer {
         return singletonFrame;
     }
 
-    public int getDataX(){
+    public int getWidth(){
         return xDim;
     }
 
-    public int getDataY(){
+    public int getHeight(){
         return yDim;
     }
 
@@ -59,7 +63,7 @@ public class Frame extends JFrame implements Displayer {
             Vector initialDirection = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
                     new Random().nextInt(maxSpeed - minSpeed) + minSpeed);
 
-            Cercle c = new Cercle(initialPosition, initialDirection, color, rayon);
+            FillCercle c = new FillCercle(initialPosition, initialDirection, color, rayon);
             board.addEntity(c);
 
         }
@@ -74,7 +78,7 @@ public class Frame extends JFrame implements Displayer {
             Vector initialDirection = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
                     new Random().nextInt(maxSpeed - minSpeed) + minSpeed);
 
-            Square s = new Square(initialPosition, initialDirection, color, heigth, width);
+            FillSquare s = new FillSquare(initialPosition, initialDirection, color, heigth, width);
             board.addEntity(s);
 
         }
