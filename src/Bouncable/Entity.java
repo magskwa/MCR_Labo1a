@@ -2,7 +2,8 @@ package Bouncable;
 
 import java.awt.*;
 import java.util.Random;
-
+import Graphic.*;
+import Graphic.Frame;
 import Renderer.*;
 import Util.Vector;
 
@@ -21,10 +22,10 @@ abstract public class Entity implements Bouncable {
     Random random = new Random();
 
     public Entity(){
-        size = new Random().nextInt(maxSize - minSize) + minSize;
-        position = new Vector(new Random().nextInt(xDim - size) + size, new Random().nextInt(yDim - size) + size);
+        size = random.nextInt(maxSize - minSize) + minSize;
+        position = new Vector(new Random().nextInt(xDim - size) + size, random.nextInt(yDim - size) + size);
         deplacement = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
-                new Random().nextInt(maxSpeed - minSpeed) + minSpeed);
+                random.nextInt(maxSpeed - minSpeed) + minSpeed);
     }
 
     abstract public Color getColor();
@@ -38,20 +39,34 @@ abstract public class Entity implements Bouncable {
         // ou position = position.add(deplacement); vient de refresh
     }
 
+    abstract public Renderer getRenderer();
+
     public void draw(){
-        // how ?
-        //getRenderer.display(,this);
+        getRenderer().display( Frame.getInstance().getGraphics() ,this);
     }
 
     public void move(){
-        // missing something but what
+        position = position.add(deplacement);
+
         int x = position.getX();
         int y = position.getY();
 
-        if (x - size / 2 <= 0 || x + size / 2 >= size)
+
+        if (x - size / 2 <= 0)
+            position.setX(size / 2);
+        if (x + size / 2 >= Frame.getInstance().getWidth())
+            position.setX(Frame.getInstance().getWidth() - size / 2);
+        if (y - size / 2 <= 0)
+            position.setY(size / 2);
+        if (y + size / 2 >= Frame.getInstance().getWidth())
+            position.setY(Frame.getInstance().getHeight() - size / 2);
+
+        if (x - size / 2 <= 0 || x + size / 2 >= Frame.getInstance().getWidth())
             deplacement.setX(-deplacement.getX());
-        if (y - size / 2 <= 0 || y + size / 2 >= size)
+        if (y - size / 2 <= 0 || y + size / 2 >= Frame.getInstance().getHeight())
             deplacement.setY(-deplacement.getY());
+
+
     }
 
 /*

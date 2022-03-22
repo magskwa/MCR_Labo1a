@@ -6,17 +6,30 @@ import Util.Vector;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Frame implements Displayer{
 
     private JFrame jframe;
     public JPanel jpanel;
+    private Image image;
+
     private int xDim = 500;
     private int yDim = 500;
 
+    private static Frame instance;
 
-    public Frame(){
+    public static Frame getInstance(){
+        if(instance == null) instance = new Frame();
+        return instance;
+    }
+
+
+    private Frame(){
         jframe = new JFrame();
         jpanel = new JPanel();
 
@@ -26,39 +39,44 @@ public class Frame implements Displayer{
         jframe.setVisible(true);
 
         jpanel.setBackground(Color.WHITE);
-        jpanel.setPreferredSize(new Dimension(jpanel.getWidth(), jpanel.getHeight()));
         jpanel.setVisible(true);
+        jpanel.setSize(xDim, yDim);
+        jpanel.setPreferredSize(new Dimension(500, 500));
+        image =  jframe.createImage(getWidth(), getHeight());
+
     }
 
-    public JPanel getJpanel() {
-        return jpanel;
+    public void addKeyListener(KeyAdapter ka) {
+        jframe.addKeyListener(ka);
     }
+
 
     @Override
     public int getWidth() {
-        return jpanel.getWidth();
+        return jframe.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return jpanel.getHeight();
+        return jframe.getHeight();
     }
 
     @Override
     public Graphics2D getGraphics() {
-        return (Graphics2D) jpanel.createImage(getWidth(), getHeight()).getGraphics();
+        return (Graphics2D) image.getGraphics();
     }
 
     @Override
     public void repaint() {
-        //jpanel.getGraphics().drawImage()
-
+        jframe.getGraphics().drawImage(image,0,0,null);
     }
 
     @Override
     public void setTitle(String title) {
         jframe.setTitle(title);
     }
+
+
 }
 
 
