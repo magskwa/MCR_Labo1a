@@ -65,7 +65,7 @@ public class Bouncers {
             @Override
             public void run() {
 
-                for (Bouncable b : bouncers)
+                for (Bouncable b : new LinkedList<Bouncable>(bouncers))
                 {
                     b.move();
                     b.draw();

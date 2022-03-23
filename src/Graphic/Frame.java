@@ -28,21 +28,30 @@ public class Frame implements Displayer{
         return instance;
     }
 
+    private class myPanel extends JPanel {
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(image,0,0,null);
+        }
+    }
+
 
     private Frame(){
         jframe = new JFrame();
-        jpanel = new JPanel();
+        jpanel = new myPanel();
 
         jframe.setSize(xDim, yDim);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setLocationRelativeTo(null);
         jframe.setVisible(true);
 
-        jpanel.setBackground(Color.BLACK);
+        jpanel.setBackground(Color.WHITE);
         jpanel.setVisible(true);
         jpanel.setSize(xDim, yDim);
         jpanel.setPreferredSize(new Dimension(500, 500));
-        image =  jframe.createImage(getWidth(), getHeight());
+        jframe.add(jpanel);
+        image =  jpanel.createImage(getWidth(), getHeight());
 
     }
 
@@ -63,13 +72,13 @@ public class Frame implements Displayer{
 
     @Override
     public Graphics2D getGraphics() {
-        return (Graphics2D) jframe.getGraphics();
+        return (Graphics2D) image.getGraphics();
     }
 
     @Override
     public void repaint() {
-        jframe.repaint();
-        getGraphics().drawImage(image,0,0,null);
+        jpanel.repaint();
+        image =  jpanel.createImage(getWidth(), getHeight());
     }
 
     @Override
