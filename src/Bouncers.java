@@ -64,7 +64,8 @@ public class Bouncers {
         clock.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                for(Bouncable b : new LinkedList<Bouncable>(bouncers))
+
+                for (Bouncable b : bouncers)
                 {
                     b.move();
                     b.draw();

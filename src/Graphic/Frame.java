@@ -38,7 +38,7 @@ public class Frame implements Displayer{
         jframe.setLocationRelativeTo(null);
         jframe.setVisible(true);
 
-        jpanel.setBackground(Color.WHITE);
+        jpanel.setBackground(Color.BLACK);
         jpanel.setVisible(true);
         jpanel.setSize(xDim, yDim);
         jpanel.setPreferredSize(new Dimension(500, 500));
@@ -63,12 +63,13 @@ public class Frame implements Displayer{
 
     @Override
     public Graphics2D getGraphics() {
-        return (Graphics2D) image.getGraphics();
+        return (Graphics2D) jframe.getGraphics();
     }
 
     @Override
     public void repaint() {
-        jframe.getGraphics().drawImage(image,0,0,null);
+        jframe.repaint();
+        getGraphics().drawImage(image,0,0,null);
     }
 
     @Override
