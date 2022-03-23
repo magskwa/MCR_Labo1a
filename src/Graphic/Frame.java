@@ -1,21 +1,13 @@
 package Graphic;
 
-import Bouncable.FillCercle;
-import Bouncable.FillSquare;
-import Util.Vector;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
-import java.util.Random;
 
 public class Frame implements Displayer{
 
     private JFrame jframe;
-    public JPanel jpanel;
+    public JPanel panel;
     private Image image;
 
     private int xDim = 500;
@@ -39,19 +31,19 @@ public class Frame implements Displayer{
 
     private Frame(){
         jframe = new JFrame();
-        jpanel = new myPanel();
+        panel = new myPanel();
 
         jframe.setSize(xDim, yDim);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setLocationRelativeTo(null);
         jframe.setVisible(true);
 
-        jpanel.setBackground(Color.WHITE);
-        jpanel.setVisible(true);
-        jpanel.setSize(xDim, yDim);
-        jpanel.setPreferredSize(new Dimension(500, 500));
-        jframe.add(jpanel);
-        image =  jpanel.createImage(getWidth(), getHeight());
+        panel.setBackground(Color.WHITE);
+        panel.setVisible(true);
+        panel.setSize(xDim, yDim);
+        panel.setPreferredSize(new Dimension(xDim, yDim));
+        jframe.add(panel);
+        image =  panel.createImage(getWidth(), getHeight());
 
     }
 
@@ -77,8 +69,8 @@ public class Frame implements Displayer{
 
     @Override
     public void repaint() {
-        jpanel.repaint();
-        image =  jpanel.createImage(getWidth(), getHeight());
+        panel.repaint();
+        image =  panel.createImage(getWidth(), getHeight());
     }
 
     @Override
