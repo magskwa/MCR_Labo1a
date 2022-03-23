@@ -12,8 +12,8 @@ abstract public class Entity implements Bouncable {
     protected Vector deplacement;
     protected int size;
 
-    int maxSpeed = 10;
-    int minSpeed = 5;
+    int maxSpeed = 5;
+    int minSpeed = 2;
     int maxSize = 20;
     int minSize = 10;
     private int xDim = 500;

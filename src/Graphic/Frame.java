@@ -25,6 +25,7 @@ public class Frame implements Displayer{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(image,0,0,null);
+            image =  panel.createImage(getWidth(), getHeight());
         }
     }
 
@@ -70,7 +71,6 @@ public class Frame implements Displayer{
     @Override
     public void repaint() {
         panel.repaint();
-        image =  panel.createImage(getWidth(), getHeight());
     }
 
     @Override
