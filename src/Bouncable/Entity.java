@@ -46,36 +46,18 @@ abstract public class Entity implements Bouncable {
     }
 
     public void move(){
-        position = position.add(deplacement);
+
 
         int x = position.getX();
         int y = position.getY();
-
-
-        if (x - size / 2 <= 0)
-            position.setX(size / 2);
-        if (x + size / 2 >= Frame.getInstance().getWidth())
-            position.setX(Frame.getInstance().getWidth() - size / 2);
-        if (y - size / 2 <= 0)
-            position.setY(size / 2);
-        if (y + size / 2 >= Frame.getInstance().getWidth())
-            position.setY(Frame.getInstance().getHeight() - size / 2);
 
         if (x - size / 2 <= 0 || x + size / 2 >= Frame.getInstance().getWidth())
             deplacement.setX(-deplacement.getX());
         if (y - size / 2 <= 0 || y + size / 2 >= Frame.getInstance().getHeight())
             deplacement.setY(-deplacement.getY());
 
+        position = position.add(deplacement);
+
 
     }
-
-/*
-
-    public void paintComponent(Graphics g) {
-        g.setColor(getColor());
-        drawShape(g);
-    }
-
- */
-
 }

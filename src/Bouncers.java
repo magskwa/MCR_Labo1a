@@ -72,7 +72,7 @@ public class Bouncers {
                 }
                 frame.repaint();
             }
-        },0, 10);
+        },0, 20);
 
     }
 
