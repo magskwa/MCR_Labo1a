@@ -7,44 +7,58 @@ import Graphic.Frame;
 import Renderer.*;
 import Util.Vector;
 
+/**
+ * Entity.java
+ * class Entity
+ * @brief Class representing an Entity that can be drawn into a JFrame Object.
+ * @authors Magali Egger, Tania Nunez
+ */
+
 abstract public class Entity implements Bouncable {
+
     protected Vector position;
     protected Vector deplacement;
     protected int size;
+    private Color color;
 
-    int maxSpeed = 5;
-    int minSpeed = 2;
-    int maxSize = 20;
-    int minSize = 10;
-    private int xDim = 500;
-    private int yDim = 500;
+    static int maxSpeed = 5;
+    static int minSpeed = 2;
+    static int maxSize = 20;
+    static int minSize = 10;
+    static  int xDim = 500;
+    static  int yDim = 500;
 
     Random random = new Random();
 
-    public Entity(){
+    public Entity(Color c){
         size = random.nextInt(maxSize - minSize) + minSize;
         position = new Vector(new Random().nextInt(xDim - size) + size, random.nextInt(yDim - size) + size);
         deplacement = new Vector(new Random().nextInt(maxSpeed - minSpeed) + minSpeed,
                 random.nextInt(maxSpeed - minSpeed) + minSpeed);
+        color = c;
     }
 
-    abstract public Color getColor();
+    /**
+     * @return the color of the Entity
+     */
+    public Color getColor() { return color; }
 
-    public void updateDirection(Vector direction) {
-        this.deplacement = direction;
-    }
-
-    public void updatePosition(Vector position){
-        this.position = position;
-        // ou position = position.add(deplacement); vient de refresh
-    }
-
+    /**
+     * @return the Render that displays the Entity
+     */
     abstract public Renderer getRenderer();
 
+    /**
+     * @brief Entity is drawn by its Renderer
+     */
     public void draw(){
         getRenderer().display( Frame.getInstance().getGraphics() ,this);
     }
 
+    /**
+     * @brief Updates the position of the Entity by adding its deplacement. If the Entity touches a side of the JFrame,
+     * it bounces in the opposite way.
+     */
     public void move(){
 
 

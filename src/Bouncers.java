@@ -1,24 +1,28 @@
 import Bouncable.Bouncable;
 import Factories.EmptyBouncableFactory;
-import Factories.FillBouncableFactory;
-import Graphic.*;
+import Factories.FilledBouncableFactory;
 import Graphic.Frame;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+/**
+ * Bouncers.java
+ * Programm class to run a Window in which you can create Bouncables in it by pressing certain keys.
+ */
 public class Bouncers {
 
     private LinkedList<Bouncable> bouncers;
     private Frame frame;
 
+
+    /**
+     * Constructor of Bouncers
+     * @brief creates all it's components and the keys for the program by using the addKeyListener of its Frame object
+     */
     public Bouncers(){
         bouncers = new LinkedList<>();
 
@@ -43,7 +47,7 @@ public class Bouncers {
                         break;
                     }
                     case KeyEvent.VK_F:{
-                        FillBouncableFactory factory = new FillBouncableFactory();
+                        FilledBouncableFactory factory = new FilledBouncableFactory();
                         for (int i = 0; i < 10; ++i) {
                             bouncers.add(factory.createCercle());
                             bouncers.add(factory.createSquare());
@@ -59,6 +63,9 @@ public class Bouncers {
         });
     }
 
+    /**
+     * Method to run the programm Bounce Bounce
+     */
     public void running() {
         Timer clock = new Timer();
         clock.scheduleAtFixedRate(new TimerTask() {

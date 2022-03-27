@@ -1,16 +1,27 @@
 package Factories;
 
-import Bouncable.EmptyCercle;
+import Bouncable.EmptyCircle;
 import Bouncable.EmptySquare;
+import Graphic.Frame;
 
+/**
+ * EmptyBouncableFactory.java
+ * Singleton Factory to create EmptyBouncable objects
+ * @authors Egger Magali, Nunez Tania
+ */
 public class EmptyBouncableFactory extends BouncableFactory {
-    // getInstance if singleton
+    private static EmptyBouncableFactory instance;
+
+    public static EmptyBouncableFactory getInstance() {
+        if(instance == null) instance = new EmptyBouncableFactory();
+        return instance;
+    }
 
     public EmptySquare createSquare(){
         return new EmptySquare();
     }
 
-    public EmptyCercle createCercle(){
-        return new EmptyCercle();
+    public EmptyCircle createCercle(){
+        return new EmptyCircle();
     }
 }

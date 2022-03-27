@@ -4,10 +4,20 @@ import Renderer.*;
 
 import java.awt.*;
 
+/**
+ * EmptySquare.java
+ * class EmptySquare
+ * @brief Class representing an empty square that can be drawn into a JFrame Object.
+ * @authors Magali Egger, Tania Nunez
+ */
 public class EmptySquare extends Entity {
-    private Color color = Color.red;
 
-    public Color getColor() { return color; }
+    /**
+     * Constructor of EmptyCircle with default color red.
+     */
+    public EmptySquare() {
+        super(Color.red);
+    }
 
     public Renderer getRenderer(){
         return new EmptyRenderer();

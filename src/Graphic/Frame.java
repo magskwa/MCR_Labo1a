@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 
+/**
+ * Frame.java
+ * Singleton Frame to diplay Bouncable entities in a JFrame
+ * @authors Egger Magali, Nunez Tania
+ */
 public class Frame implements Displayer{
 
     private JFrame jframe;
@@ -20,6 +25,9 @@ public class Frame implements Displayer{
         return instance;
     }
 
+    /**
+     * Internal redefinition of the class JPanel to override the method paintComponent
+     */
     private class myPanel extends JPanel {
         @Override
         public void paintComponent(Graphics g) {
@@ -30,6 +38,10 @@ public class Frame implements Displayer{
     }
 
 
+    /**
+     * Constructor of the Frame
+     * @brief creates all its components and sets their dimension to its own
+     */
     private Frame(){
         jframe = new JFrame();
         panel = new myPanel();
@@ -48,6 +60,10 @@ public class Frame implements Displayer{
 
     }
 
+    /**
+     * Adds a KeyAdapter to the JFrame component.
+     * @param ka the KeyAdapter to be added
+     */
     public void addKeyListener(KeyAdapter ka) {
         jframe.addKeyListener(ka);
     }
