@@ -21,14 +21,14 @@ abstract public class Entity implements Bouncable {
     protected int size;
     private Color color;
 
-    static int maxSpeed = 5;
-    static int minSpeed = 2;
-    static int maxSize = 20;
-    static int minSize = 10;
-    static  int xDim = 500;
-    static  int yDim = 500;
+    static private int maxSpeed = 5;
+    static private int minSpeed = 2;
+    static private int maxSize = 20;
+    static private int minSize = 10;
+    static private int xDim = 500;
+    static private int yDim = 500;
 
-    Random random = new Random();
+    private Random random = new Random();
 
     public Entity(Color c){
         size = random.nextInt(maxSize - minSize) + minSize;

@@ -6,8 +6,8 @@ package Util;
  * @authors Egger Magali, Nunez Tania
  */
 public class Vector {
-    int x;
-    int y;
+    private int x;
+    private int y;
 
     /**
      * set the x component of the Vector

@@ -3,11 +3,10 @@ import Factories.EmptyBouncableFactory;
 import Factories.FilledBouncableFactory;
 import Graphic.Frame;
 
+import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Bouncers.java
@@ -67,20 +66,15 @@ public class Bouncers {
      * Method to run the programm Bounce Bounce
      */
     public void running() {
-        Timer clock = new Timer();
-        clock.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
+        new Timer(10, e -> {
 
-                for (Bouncable b : new LinkedList<Bouncable>(bouncers))
-                {
-                    b.move();
-                    b.draw();
-                }
-                frame.repaint();
+            for (Bouncable b : bouncers)
+            {
+                b.move();
+                b.draw();
             }
-        },0, 20);
-
+            frame.repaint();
+        }  ).start();
     }
 
     public static void main(String ... args) {
